@@ -48,14 +48,14 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :address
+- has_one :addresses
 
-## address テーブル 配送先情報
+## addresses テーブル 配送先情報
 
 | Column        | Type       | Options                        |
 | -------       | ---------- | ------------------------------ |
-| orders        | references | null: false, foreign_key: true |
-| post_code     | string     | null: false, foreign_key: true |
+| order         | references | null: false, foreign_key: true |
+| post_code     | string     | null: false                    |
 | prefecture_id | integer    | null: false                    |
 | city          | string     | null: false                    |
 | block         | string     | null: false                    |
