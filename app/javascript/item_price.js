@@ -15,9 +15,9 @@ priceInput.addEventListener("input", () => {
   const ProfitDom = document.getElementById("profit");
   //id属性が"profit"という値に一致するHTML要素を取得する処理 販売利益
 
-  addTaxDom.innerHTML = Math.round(priceInput.value * 0.1 );
+  addTaxDom.innerHTML = Math.floor(inputValue * 0.1);
   //addTaxDom.innerHTML = "入力した金額をもとに販売手数料を計算する処理"
-  //入力された税抜き価格（priceInput.value）に0.1を掛けて、計算結果を四捨五入（Math.round()）。そして、計算結果を税込み価格を表示するHTML要素（addTaxDom）の内部のテキストに代入
+  //入力された税抜き価格（priceInput.value）に0.1を掛けて、計算結果を四捨五入.そして、計算結果を税込み価格を表示するHTML要素（addTaxDom）の内部のテキストに代入
     
   ProfitDom.innerHTML = inputValue - addTaxDom.innerHTML;
   // 出品価格から販売手数料を引く処理 価格ー手数料
