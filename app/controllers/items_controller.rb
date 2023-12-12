@@ -14,11 +14,9 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      # 保存成功の処理
       redirect_to root_path
     else
-      # バリデーションが通過しない場合の処理
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
