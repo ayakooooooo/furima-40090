@@ -115,27 +115,26 @@ RSpec.describe Item, type: :model do
       it 'priceが全角数字だと出品できない' do
         @item.price = "２０００"
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price should be half-width numbers")
+        expect(@item.errors.full_messages).to include("Price Out of setting range")
       end
       it "priceが半角英字では出品できない" do
         @item.price = "sample"
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price should be half-width numbers")
+        expect(@item.errors.full_messages).to include("Price Out of setting range")
       end
-      it "priceが半角英数字混合では出品できない" do
-        @item.price = "sample1000"
+      it 'priceが半角英数字混合では出品できない' do
+        @item.price = 'sample1000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price should be half-width numbers")
+        expect(@item.errors.full_messages).to include('Price Out of setting range')
       end
       it '価格が300円未満では出品できない' do
-        @item.price = "299"
+        @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include(" Price Out of setting range")
+        expect(@item.errors.full_messages).to include("Price Out of setting range")
       end
       it '価格が9_999_999円を超えると出品できない' do
         @item.price = 10_000_000
         @item.valid?
-        binding.pry
         expect(@item.errors.full_messages).to include("Price Out of setting range")
       end
     end
