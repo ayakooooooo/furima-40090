@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   # これで ActiveHashのアソシエーション
 
   belongs_to :user
-  has_one   :order
+  #has_one   :order
   # これでテーブルのアソシエーション
 
   has_one_attached :image
@@ -30,6 +30,5 @@ class Item < ApplicationRecord
   validates :prefecture_id, presence: true
   validates :shipping_date_id, presence: true
   validates :price, presence: true
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'Out of setting range' }
-  validates :price, numericality: { with: /\A[0-9]+\z/, message: 'should be half-width numbers' }
+  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'Out of setting range' }
 end

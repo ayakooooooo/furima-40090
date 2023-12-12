@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   # ログインしていないユーザーをログインページの画面に促す
 
   def index
-    @items = Item.order('created_at DESC')
+    # @items = Item.order('created_at DESC')
     # 一覧が新規投稿順に並ぶように記述
   end
 
