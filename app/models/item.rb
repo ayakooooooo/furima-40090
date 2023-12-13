@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   # これで ActiveHashのアソシエーション
 
   belongs_to :user
-  #has_one   :order
+  has_one    :order
   # これでテーブルのアソシエーション
 
   has_one_attached :image
