@@ -17,7 +17,12 @@ class ItemsController < ApplicationController
       redirect_to root_path
     else
       render :new, status: :unprocessable_entity
+      # このstatus: :unprocessable_entity記述によってエラー表示
     end
+  end
+
+  def show
+    @item = Item.find(params[:id])
   end
 
   private
