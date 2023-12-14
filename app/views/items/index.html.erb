@@ -130,7 +130,7 @@
 
       <% @items.each do |item| %>
       <li class='list'>
-        <%#<%= link_to items_path(item) do %>
+        <%= link_to item_path(item) do %>
         <div class='item-img-content'>
           <%= image_tag item.image , class: "item-img" %>
 
@@ -153,8 +153,8 @@
             </div>
           </div>
         </div>
-        <%# end %>
-        </li>
+        <% end %>
+      </li>
       <% end %>
 
       <% if @items.length == 0 %>
