@@ -26,7 +26,22 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    # ユーザーがログインしていて、なお且つそのユーザーが出品者である場合のみ
+    if user_signed_in?
+      @item = Item.find(params[:id])
+      unless current_user.id == @item.user_id
+      redirect_to root_path
+      end
+    end
+  end
+
+  def update
     @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path(@item)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
