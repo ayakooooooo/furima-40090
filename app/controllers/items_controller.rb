@@ -2,6 +2,9 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   # ログインしていないユーザーをログインページの画面に促す
 
+  before_action :set_item, only: [:show, :edit, :update]
+  # 重複処理をまとめる リファクタリング
+
   def index
     @items = Item.order('created_at DESC')
     # 一覧が新規投稿順に並ぶように記述
@@ -22,12 +25,32 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+  end
+
+  def edit
+    # ユーザーがログインしていて、なお且つそのユーザーが出品者である場合のみ
+    if user_signed_in?
+      unless current_user.id == @item.user_id
+      redirect_to root_path
+      end
+    end
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(@item)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
 
   def item_params
     params.require(:item).permit(:image, :product_name, :description, :category_id, :status_id, :shipping_cost_id, :prefecture_id, :shipping_date_id, :price).merge(user_id: current_user.id)
+  end
+
+  def set_item
+    @item = Item.find(params[:id])
   end
 end
