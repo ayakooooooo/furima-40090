@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   # ログインしていないユーザーをログインページの画面に促す
 
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   # 重複処理をまとめる リファクタリング
 
   def index
@@ -41,6 +41,17 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item)
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if @item.user_id == current_user.id
+      # ログイン状態の場合にのみ、自身が出品した商品情報を削除できる
+      @item.destroy
+      redirect_to root_path
+      # 削除が完了したら、トップページに遷移
+    else
+      redirect_to root_path
     end
   end
 
