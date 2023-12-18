@@ -2,7 +2,7 @@ class OrderAddress
   # クラスを定義
   include ActiveModel::Model
   # form_withメソッドに対応する機能とバリデーションを行う機能を、作成したクラスに持たせる
-  attr_accessor :user_id, :item_id, :postcode, :prefecture_id, :city, :block, :building, :phone_number, :token
+  attr_accessor :user_id, :item_id, :post_code, :prefecture_id, :city, :block, :building, :phone_number, :token
   # 保存したいすべての属性について、上記のように指定することで、ゲッターとセッターを定義
   # order_addressのインスタンスを生成するタイミングでは、donation_idは存在しない
 
@@ -25,7 +25,7 @@ class OrderAddress
     # データをテーブルに保存する処理
     order = Order.create(user_id: user_id, item_id: item_id)
     # Orderモデルの新しいレコードが作成され、そのレコードを表すOrderモデルのインスタンスがorder変数に代入,user_id属性にuser_id変数の値を、item_id属性にitem_id変数の値を設定
-    address.create(order_id: order.id, post_code: post_code, prefecture_id: prefecture_id, city: city, block: block, building: building, phone_number: phone_number)
+    Address.create(order_id: order.id, post_code: post_code, prefecture_id: prefecture_id, city: city, block: block, building: building, phone_number: phone_number)
     # 住所を保存する order_idには、変数orderのidと指定する
   end
 end
