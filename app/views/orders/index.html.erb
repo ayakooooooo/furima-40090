@@ -1,3 +1,4 @@
+<%= include_gon %>
 <%= render "shared/second-header"%>
 
 <div class='transaction-contents'>
@@ -32,7 +33,7 @@
     <%# /支払額の表示 %>
 
     <%= form_with(model: @order_address, url: item_orders_path(@item),id: 'charge-form', class: 'transaction-form-wrap',local: true) do |f| %>
-    
+    <%#             'charge-form'              ここ %>
     <%= render 'shared/error_messages', model: f.object %>
     <%# インスタンスを渡して、エラー発生時にメッセージを表示 %>
 
@@ -47,6 +48,7 @@
           <span class="indispensable">必須</span>
         </div>
         <div id="number-form" class="input-default"></div>
+        <%#     number-formここ          %>
         <div class='available-card'>
           <%= image_tag 'card-visa.gif', class: 'card-logo'%>
           <%= image_tag 'card-mastercard.gif', class: 'card-logo'%>
@@ -61,6 +63,7 @@
         </div>
         <div class='input-expiration-date-wrap'>
           <div id="expiry-form" class="input-default"></div>
+          <%#     expiry-formここ          %>
         </div>
       </div>
       <div class="form-group">
@@ -69,6 +72,7 @@
           <span class="indispensable">必須</span>
         </div>
         <div id="cvc-form" class="input-default"></div>
+        <%#     cvc-formここ               %>
       </div>
     </div>
     <%# /カード情報の入力 %>

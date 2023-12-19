@@ -28,12 +28,12 @@
 
     <%# if user_signed_in? && @item.length != 0 不適切%> 
     <%# if user_signed_in? && @item.record.nil?不適切%>
-    <% if user_signed_in? && @item.present? %>
-      <% if current_user.id == @item.user_id %>
+    <% if user_signed_in?  %><%# ログイン中であれば表示 %>
+      <% if current_user.id == @item.user_id && @item.order.nil? %> <%# 出品者かつ未購入品であれば表示 %>
       <%= link_to "商品の編集",edit_item_path(@item) , method: :get, class: "item-red-btn" %>
       <p class="or-text">or</p>
       <%= link_to "削除", item_path(@item), data: {turbo_method: :delete}, class:"item-destroy" %>
-      <% else %>
+      <% else %><%# 出品者以外かつ未購入品であれば、購入画面を表示 %>
     <%= link_to "購入画面に進む",item_orders_path(@item),class:"item-red-btn"%>
       <%end%>
     <%end%>

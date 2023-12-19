@@ -20,6 +20,8 @@ class OrderAddress
     validates :block
     validates :phone_number, format: { with: /\A[0-9]{10,11}\z/, message: 'should be a 10 to 11 digit numeric value' }
     # 10桁以上11桁未満の半角数値のみを保存可能
+    validates :token, presence: true
+    # attr_accessor :tokenと記載したことにより、tokenについてのバリデーションを記述することができる
   end
   def save
     # データをテーブルに保存する処理

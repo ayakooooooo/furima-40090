@@ -8,5 +8,6 @@ FactoryBot.define do
     block               { '1-1' }
     building            { '東京ハイツ' }
     phone_number        { Faker::Number.decimal_part(digits: 11) }
+    token               { 'tok_abcdefghijk00000000000000000' }
   end
 end
