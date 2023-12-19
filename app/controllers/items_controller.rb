@@ -28,11 +28,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    # ユーザーがログインしていて、なお且つそのユーザーが出品者である場合のみ
-    if user_signed_in?
-      unless current_user.id == @item.user_id
-      redirect_to root_path
-      end
+    if @item.user_id == current_user.id && @item.order.nil?
+      else
+        redirect_to root_path
     end
   end
 
