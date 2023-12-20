@@ -2,9 +2,10 @@ require 'rails_helper'
 
 RSpec.describe OrderAddress, type: :model do
   before do
-    FactoryBot.create(:user)
-    FactoryBot.create(:item)
+    user = FactoryBot.create(:user) # FactoryBotを使用して新しいuserオブジェクトを作成
+    item = FactoryBot.create(:item) # FactoryBotを使用して新しいitemオブジェクトを作成
     @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
+    # user.idとitem.idを指定してorder_addressオブジェクトを作成
   end
 
   describe '配送先情報の保存' do
@@ -106,6 +107,11 @@ RSpec.describe OrderAddress, type: :model do
         @order_address.token = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
+      end
+      it '電話番号が9桁以下では登録できないこと' do
+        @order_address.phone_number = 123_456
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Phone number should be a 10 to 11 digit numeric value')
       end
     end
   end
