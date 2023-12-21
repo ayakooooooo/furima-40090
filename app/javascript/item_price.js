@@ -1,5 +1,3 @@
-window.addEventListener('turbo:render', () => {
-  //新しいページの内容がレンダリングされた後に発火する
 window.addEventListener('turbo:load', () => {
   //ページが完全に読み込まれたときに発火する
 const priceInput = document.getElementById("item-price");
@@ -27,5 +25,4 @@ priceInput.addEventListener("input", () => {
   //販売利益を表示するHTML要素（ProfitDom）の内部のテキストに代入
 
 })
-});
 });
