@@ -1,3 +1,4 @@
+window.addEventListener('turbo:render', () => {
 window.addEventListener('turbo:load', () => {
 const priceInput = document.getElementById("item-price");
   // 金額を入力した数値をpriceInputという変数に格納する
@@ -24,4 +25,5 @@ priceInput.addEventListener("input", () => {
   //販売利益を表示するHTML要素（ProfitDom）の内部のテキストに代入
 
 })
+});
 });
