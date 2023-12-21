@@ -1,5 +1,7 @@
 window.addEventListener('turbo:render', () => {
+  //新しいページの内容がレンダリングされた後に発火する
 window.addEventListener('turbo:load', () => {
+  //ページが完全に読み込まれたときに発火する
 const priceInput = document.getElementById("item-price");
   // 金額を入力した数値をpriceInputという変数に格納する
   //document.getElementById()は、指定されたid属性の値に一致する最初のHTML要素を取得するためのメソッド
